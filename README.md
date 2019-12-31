@@ -15,6 +15,20 @@ If you use Maven add this dependency:
 
 after having add the dependency to `horcrux`and the dependency to the suitable JDBC driver.
 
+You also need to add the following requires declaration in your module descriptor:
+* `requires com.code.fauch.horcrux` the main package of Horcrux
+* `requires com.code.fauch.horcrux.hikari` to enable the plugin for Hikari
+
+Here is an example of a Java module requires declaration: 
+
+```
+module com.code.fauch.testHx {
+    requires com.code.fauch.horcrux;
+    requires com.code.fauch.horcrux.hikari;
+}
+```
+
+
 ## Usage
 Create a new `java.util.Properties` object with the properties you want to use to configure Hikari.
 
