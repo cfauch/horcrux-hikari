@@ -51,7 +51,7 @@ public class HikariHorcruxTest {
         prop.setProperty("username", "harry");
         prop.setProperty("password", "");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v1").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             db.open(ECreateOption.SCHEMA);
             Assert.assertEquals(1, db.getCurrentVersion().intValue());
         }
@@ -64,14 +64,14 @@ public class HikariHorcruxTest {
         prop.setProperty("username", "harry");
         prop.setProperty("password", "");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v2").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             db.open(ECreateOption.SCHEMA);
             Assert.assertEquals(2, db.getCurrentVersion().intValue());
             try(Connection conn = db.openSession()) {
                 final DatabaseMetaData meta = conn.getMetaData();
-                final ResultSet tables = meta.getTables(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet tables = meta.getTables(null, null, "HORCRUX_USERS", null);
                 Assert.assertTrue(tables.next());
-                final ResultSet columns = meta.getColumns(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet columns = meta.getColumns(null, null, "HORCRUX_USERS", null);
                 final ArrayList<String> colNames = new ArrayList<>();
                 while(columns.next()) {
                     colNames.add(columns.getString("COLUMN_NAME"));
@@ -93,14 +93,14 @@ public class HikariHorcruxTest {
         prop.setProperty("autoCommit", "false");
         prop.setProperty("poolName", "database-connection-pool");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v2").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             final Integer version = db.open(ECreateOption.UPGRADE);
             Assert.assertEquals(2, version.intValue());
             try(Connection conn = db.openSession()) {
                 final DatabaseMetaData meta = conn.getMetaData();
-                final ResultSet tables = meta.getTables(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet tables = meta.getTables(null, null, "HORCRUX_USERS", null);
                 Assert.assertTrue(tables.next());
-                final ResultSet columns = meta.getColumns(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet columns = meta.getColumns(null, null, "HORCRUX_USERS", null);
                 final ArrayList<String> colNames = new ArrayList<>();
                 while(columns.next()) {
                     colNames.add(columns.getString("COLUMN_NAME"));
@@ -117,14 +117,14 @@ public class HikariHorcruxTest {
         prop.setProperty("username", "harry");
         prop.setProperty("password", "");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v3").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             final Integer version = db.open(ECreateOption.SCHEMA);
             Assert.assertEquals(3, version.intValue());
             try(Connection conn = db.openSession()) {
                 final DatabaseMetaData meta = conn.getMetaData();
-                final ResultSet tables = meta.getTables(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet tables = meta.getTables(null, null, "HORCRUX_USERS", null);
                 Assert.assertTrue(tables.next());
-                final ResultSet columns = meta.getColumns(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet columns = meta.getColumns(null, null, "HORCRUX_USERS", null);
                 final ArrayList<String> colNames = new ArrayList<>();
                 while(columns.next()) {
                     colNames.add(columns.getString("COLUMN_NAME"));
@@ -146,14 +146,14 @@ public class HikariHorcruxTest {
         prop.setProperty("autoCommit", "false");
         prop.setProperty("poolName", "database-connection-pool");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v3").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             final Integer version = db.open(ECreateOption.UPGRADE);
             Assert.assertEquals(3, version.intValue());
             try(Connection conn = db.openSession()) {
                 final DatabaseMetaData meta = conn.getMetaData();
-                final ResultSet tables = meta.getTables(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet tables = meta.getTables(null, null, "HORCRUX_USERS", null);
                 Assert.assertTrue(tables.next());
-                final ResultSet columns = meta.getColumns(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet columns = meta.getColumns(null, null, "HORCRUX_USERS", null);
                 final ArrayList<String> colNames = new ArrayList<>();
                 while(columns.next()) {
                     colNames.add(columns.getString("COLUMN_NAME"));
@@ -175,14 +175,14 @@ public class HikariHorcruxTest {
         prop.setProperty("autoCommit", "false");
         prop.setProperty("poolName", "database-connection-pool");
         final Path scripts = Paths.get(getClass().getResource("/dataset/v3").toURI());
-        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("horcrux_versions").build(prop)) {
+        try(DataBase db = DataBase.init("pool").withScripts(scripts).versionTable("HORCRUX_VERSIONS").build(prop)) {
             final Integer version = db.open(ECreateOption.UPGRADE);
             Assert.assertEquals(3, version.intValue());
             try(Connection conn = db.openSession()) {
                 final DatabaseMetaData meta = conn.getMetaData();
-                final ResultSet tables = meta.getTables(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet tables = meta.getTables(null, null, "HORCRUX_USERS", null);
                 Assert.assertTrue(tables.next());
-                final ResultSet columns = meta.getColumns(null, null, "horcrux_users".toUpperCase(), null);
+                final ResultSet columns = meta.getColumns(null, null, "HORCRUX_USERS", null);
                 final ArrayList<String> colNames = new ArrayList<>();
                 while(columns.next()) {
                     colNames.add(columns.getString("COLUMN_NAME"));

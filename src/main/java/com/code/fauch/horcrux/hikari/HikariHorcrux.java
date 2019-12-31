@@ -35,16 +35,25 @@ public final class HikariHorcrux implements IHorcrux {
      */
     private static final String TYPE = "pool";
     
+    /**
+     * Creates and returns Hikari data source 
+     */
     @Override
     public DataSource newDataSource(final Properties properties) {
         return new HikariDataSource(new HikariConfig(properties));
     }
 
+    /**
+     * Close the Hikari data source.
+     */
     @Override
     public void close(DataSource ds) {
         ((HikariDataSource)ds).close();
     }
 
+    /**
+     * It's a "pool" implementation.
+     */
     @Override
     public boolean accept(String type) {
         return TYPE.equals(type);
